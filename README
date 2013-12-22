@@ -16,8 +16,10 @@ greatly appreciated.
 
 To create something usable run:
 
-`npm install`
 `dmake` or `make` or `gmake`
+`DESTDIR=/some/path make install`
+
+An smf template is provided in DESTDIR/out/smf.
 
 The design was done by Ben Hutchison <ben@aldaviva.com>.
 

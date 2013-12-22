@@ -33,7 +33,10 @@ DATA_FILES = $(DATA_SUMMARY:%.summary=$(DATA_DIR)/%.json)
 
 all: $(LESSOUT) $(DATA_FILES)
 
-$(LESSOUT): $(LESSSOURCE)
+$(LESSC):
+	npm install
+
+$(LESSOUT): $(LESSSOURCE) $(LESSC)
 	$(LESSC) $(LESSSOURCE) $(LESSOUT)
 
 %.json: %.summary
@@ -41,3 +44,13 @@ $(LESSOUT): $(LESSSOURCE)
 
 clobber:
 	rm -rf $(LESSOUT) $(DATA_DIR)
+
+install: all
+	[[ -n "$(DESTDIR)" ]]
+	mkdir -p $(DESTDIR)/out
+	cp ./pkg_server.js $(DESTDIR)/out
+	cp -r html data $(DESTDIR)/out
+	mkdir -p $(DESTDIR)/out/smf
+	sed 's|@@PREFIX@@|$(DESTDIR)/out|' < smf/pkg_server.xml.in > \
+	    $(DESTDIR)/out/smf/pkg_server.xml
+	cp -r node_modules $(DESTDIR)/out/
