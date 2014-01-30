@@ -26,7 +26,9 @@ DATA_SUMMARY = 2013Q2-i386.summary \
 	2013Q3-i386.summary \
 	2013Q3-multiarch.summary \
 	2013Q3-sngl.summary \
-	2013Q3-x86_64.summary
+	2013Q3-x86_64.summary \
+	2013Q4-i386.summary \
+	2013Q4-x86_64.summary
 
 DATA_FILES = $(DATA_SUMMARY:%.summary=$(DATA_DIR)/%.json)
 
