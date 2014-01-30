@@ -12,7 +12,6 @@ var pi_headfini = '' +
 '	</head>' +
 '	<body>' +
 '		<div class="title">' +
-'			<h1>smartos pkgsrc browser</h1>' +
 '		</div>' +
 '		<div class="container">' +
 '			<div class="search"></div>' +

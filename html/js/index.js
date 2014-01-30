@@ -151,6 +151,21 @@ function createPackagePage(set, name, version)
 
 }
 
+function createTitle()
+{
+	var h1, a;
+
+	h1 = $('<h1>');
+	a = $('<a>', { text: 'smartos pkgsrc browser',
+	   href: pkg_prefix + 'index.html' });
+	a.on('click', function (event) {
+		event.preventDefault();
+		router.navigate(pkg_prefix + 'index.html', { trigger: true });
+	});
+	h1.append(a);
+	$('.title').append(h1);
+}
+
 /*
  * This always go better with a main().
  */
@@ -195,6 +210,7 @@ function main()
 	$('.search').append('<hr>');
 	search_collection.fetch({ reset: true });
 
+	createTitle();
 	router = new pkg_router();
 	if (Backbone.history.start({ pushState: true, hashChange: false }) === false)
 		router.navigate(pkg_prefix + 'index.html', { trigger: true });
