@@ -17,21 +17,21 @@ var pkgabout_info_view = Backbone.View.extend({
 
 		div = $('<div>', { class: 'start' });
 		a = $('<a>', { text: 'getting started',
-		    href: '/about/start' });
+		    href: './about/start' });
 		a.on('click', function (event) {
 			event.preventDefault();
-			router.navigate('/about/start', { trigger: true });
+			router.navigate(pkg_prefix + 'about/start', { trigger: true });
 		});
 		div.append(a);
 		this.$el.append(div);
 
 		div = $('<div>', { class: 'build' });
 		a = $('<a>', { class: 'build', text: 'creating new packages',
-		    href: '/about/building' });
+		    href: './about/building' });
 
 		a.on('click', function (event) {
 			event.preventDefault();
-			router.navigate('/about/building', { trigger: true });
+			router.navigate(pkg_prefix + 'about/building', { trigger: true });
 		});
 		div.append(a);
 		this.$el.append(div);
@@ -59,11 +59,11 @@ var pkgabout_info_view = Backbone.View.extend({
 
 		div = $('<div>', { class: 'about' });
 		a = $('<a>', { class: 'about', text: 'about',
-		    href: '/about/about' });
+		    href: './about/about' });
 
 		a.on('click', function (event) {
 			event.preventDefault();
-			router.navigate('/about/about', { trigger: true });
+			router.navigate(pkg_prefix + 'about/about', { trigger: true });
 		});
 		div.append(a);
 		this.$el.append(div);
@@ -79,10 +79,10 @@ function mkheader(header)
 	var a;
 	var h2 = $('<h2>');
 
-	a = $('<a>', { text: 'home', href: 'index.html'});
+	a = $('<a>', { text: 'home', href: pkg_prefix + 'index.html'});
 	a.on('click', function (event) {
 		event.preventDefault();
-		router.navigate('index.html', { trigger: true });
+		router.navigate(pkg_prefix + 'index.html', { trigger: true });
 	});
 	h2.append(a);
 	h2.append($('<span>', { text: ' / ' }));

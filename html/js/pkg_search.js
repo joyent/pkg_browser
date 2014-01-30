@@ -67,7 +67,7 @@ var pkgsetdrop_view = Backbone.View.extend({
 	/* Do nothing if the user hasn't entered a term */
 	if (this.$('.pkgsearch_input').val() === '')
 		return;
-	targ = '/set/' + this.$('.pkgsearch_select').val() + '/search/' +
+	targ = pkg_prefix + 'set/' + this.$('.pkgsearch_select').val() + '/search/' +
 	    this.$('.pkgsearch_input').val();
 	router.navigate(targ, { trigger: true });
     },
@@ -81,7 +81,8 @@ var pkgsetdrop_view = Backbone.View.extend({
 
 function parse_pkgsearch(raw)
 {
-	raw['url'] = '/set/' + this.collection.options.pkgset + '/package/' + raw['name'] +
+	raw['url'] = pkg_prefix + 'set/' + this.collection.options.pkgset +
+	    '/package/' + raw['name'] +
 	    '/' + raw['version'];
 	raw['id'] = raw['name'] + '-' + raw['version'];
 	return (raw);
@@ -100,7 +101,7 @@ var pkgsearch_collection = Backbone.Collection.extend({
     },
 
     url: function() {
-	return ('/api/set/' + this.options.pkgset + '/search/' +
+	return (pkg_prefix + 'api/set/' + this.options.pkgset + '/search/' +
 	    this.options.pkgsearch);
     },
 
@@ -140,7 +141,7 @@ var pkgsearch_view = Backbone.View.extend({
 		var h1 = $('<h2>');
 		intro.append(h1);
 
-		a = $('<a>', { text: 'home', href: 'index.html'});
+		a = $('<a>', { text: 'home', href: pkg_prefix + 'index.html'});
 		a.on('click', function (event) {
 			event.preventDefault();
 			router.navigate('index.html', { trigger: true });

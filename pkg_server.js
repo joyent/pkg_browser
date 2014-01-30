@@ -17,6 +17,8 @@ var mod_path = require('path');
 var mod_printf = require('extsprintf');
 var sprintf = mod_printf.sprintf;
 var mod_getopt = require('posix-getopt');
+var mod_bunyan = require('bunyan');
+var pi_mkindex = require ('./pkg_index.js').pi_mkindex;
 
 
 var pkg_sets = {};		/* JSON data for all the packages */
@@ -24,6 +26,7 @@ var pkg_set_list = [];		/* List of top level elements in the array */
 var pkg_server;			/* Restify server */
 var pkg_ip = '0.0.0.0';
 var pkg_port = '80';
+var pkg_prefix = '';
 
 function load_sets()
 {
@@ -45,6 +48,15 @@ function load_sets()
 		}
 		pkg_set_list.push(key);
 	}
+}
+
+function serve_index(req, res, next)
+{
+	res.setHeader('Content-Type', 'text/html');
+        res.writeHead(200);
+        res.end(pi_mkindex(pkg_prefix));
+
+	return (next());
 }
 
 function serve_get_allsets(req, res, next)
@@ -212,9 +224,12 @@ function main()
 	var staticfunc;
 	var parser, opt;
 
-	parser = new mod_getopt.BasicParser('h:p:', process.argv);
+	parser = new mod_getopt.BasicParser('h:p:d:', process.argv);
 	while ((opt = parser.getopt()) !== undefined) {
 		switch (opt.option) {
+		case 'd':
+			pkg_prefix = opt.optarg;
+			break;
 		case 'h':
 			pkg_ip = opt.optarg;
 			break;
@@ -231,31 +246,40 @@ function main()
 	});
 
 	/* API */
-	pkg_server.get('/api/set', serve_get_allsets);
-	pkg_server.get('/api/set/:set', serve_get_set);
-	pkg_server.get('/api/set/:set/search/:search', serve_get_set_search);
-	pkg_server.get('/api/set/:set/package/:package', serve_get_package);
-	pkg_server.get('/api/set/:set/package/:package/:version', serve_get_pkginfo);
-	pkg_server.get('/api/set/:set/category', serve_get_category);
-	pkg_server.get('/api/set/:set/category/:category', serve_get_catinfo);
+	pkg_server.get(pkg_prefix + '/api/set', serve_get_allsets);
+	pkg_server.get(pkg_prefix + '/api/set/:set', serve_get_set);
+	pkg_server.get(pkg_prefix + '/api/set/:set/search/:search', serve_get_set_search);
+	pkg_server.get(pkg_prefix + '/api/set/:set/package/:package', serve_get_package);
+	pkg_server.get(pkg_prefix + '/api/set/:set/package/:package/:version', serve_get_pkginfo);
+	pkg_server.get(pkg_prefix + '/api/set/:set/category', serve_get_category);
+	pkg_server.get(pkg_prefix + '/api/set/:set/category/:category', serve_get_catinfo);
 
 	/* HTML */
 	staticfunc = mod_restify.serveStatic({
-	    directory: './html/',
-	    default: 'index.html'
+	    directory: './html/'
 	});
 
-	pkg_server.get(/^\/set.*/, function (req, res, next) {
-		req._path = '/';
-		staticfunc(req, res, next);
-	});
+	pkg_server.get(new RegExp('^' + pkg_prefix + '/set.*/'), serve_index);
 
-	pkg_server.get(/^\/about.*/, function (req, res, next) {
-		req._path = '/';
-		staticfunc(req, res, next);
-	});
+	pkg_server.get(new RegExp('^' + pkg_prefix + '/about.*'), serve_index);
+	if (pkg_prefix != '')
+		pkg_server.get(new RegExp('^' + pkg_prefix + '/$'), serve_index);
+	else
+		pkg_server.get('/', serve_index);
+	pkg_server.get(pkg_prefix + '/index.htm', serve_index);
+	pkg_server.get(pkg_prefix + '/index.html', serve_index);
 
-	pkg_server.get(/.*/, staticfunc);
+	pkg_server.get(RegExp('^' + pkg_prefix + '/.+'), staticfunc);
+
+	/*
+	 * Enable logging.
+	 */
+	pkg_server.on('after', mod_restify.auditLogger({
+		log: mod_bunyan.createLogger({
+			name: 'audit',
+			stream: process.stdout
+		})
+	}));
 
 	pkg_server.listen(pkg_port, pkg_ip);
 }

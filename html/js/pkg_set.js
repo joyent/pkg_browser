@@ -9,7 +9,7 @@ function parse_pkgset(raw)
 	return ({ 'quarter': raw.substring(0, split),
 	    'type': raw.substring(split+1, split.length),
 	    'id': raw,
-	    'url': '/set/' + raw });
+	    'url': pkg_prefix + 'set/' + raw });
 }
 
 var pkgset_model = Backbone.Model.extend({
@@ -19,7 +19,7 @@ var pkgset_model = Backbone.Model.extend({
 var pkgset_collection = Backbone.Collection.extend({
     model: pkgset_model,
     comparator: 'quarter',
-    url: '/api/set'
+    url: pkg_prefix + 'api/set'
 });
 
 

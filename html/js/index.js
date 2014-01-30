@@ -157,19 +157,23 @@ function createPackagePage(set, name, version)
 function main()
 {
 	var search_collection;
+	var prefix = pkg_prefix.substring(1, pkg_prefix.length);
+       	var routes = {};
+
+
+	routes[prefix + 'index.html'] = 'home';
+	routes[prefix + 'about/start'] = 'start';
+	routes[prefix + 'about/building'] = 'building';
+	routes[prefix + 'about/about'] = 'about';
+	routes[prefix + 'set/:set'] = 'set';
+	routes[prefix + 'set/:set/package/:package/:version'] = 'pkg';
+	routes[prefix + 'set/:set/category/:category'] = 'cat';
+	routes[prefix + 'set/:set/category/:category/package/:package/:version'] = 'info';
+	routes[prefix + 'set/:set/search/:arg'] = 'search';
+
 
 	pkg_router = Backbone.Router.extend({
-	    routes: {
-		'index.html': 'home',
-		'about/start': 'start',
-		'about/building': 'building',
-		'about/about': 'about',
-		'set/:set': 'set',
-		'set/:set/package/:package/:version': 'pkg',
-		'set/:set/category/:category': 'cat',
-		'set/:set/category/:category/package/:package/:version': 'info',
-		'set/:set/search/:arg': 'search'
-	    },
+	    routes: routes,
 
 	    home: createTopLevel,
 	    set: createSetPage,
@@ -193,7 +197,7 @@ function main()
 
 	router = new pkg_router();
 	if (Backbone.history.start({ pushState: true, hashChange: false }) === false)
-		router.navigate('index.html', { trigger: true });
+		router.navigate(pkg_prefix + 'index.html', { trigger: true });
 }
 
 main();

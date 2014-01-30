@@ -11,6 +11,10 @@ LESSOUTDIR = html/css
 LESSOUT = $(LESSOUTDIR)/all.css
 LESSSOURCE = $(LESSDIR)/all.less
 
+JSFILES = \
+	pkg_server.js \
+	pkg_index.js
+
 SUMMARY_BASE_URL = http://pkgsrc.joyent.com/packages/SmartOS/
 SUMMARY_TRAILER = "/All/pkg_summary.bz2"
 
@@ -22,7 +26,7 @@ DATA_SUMMARY = 2013Q2-i386.summary \
 	2013Q3-i386.summary \
 	2013Q3-multiarch.summary \
 	2013Q3-sngl.summary \
-	2013Q3-x86_64.summary \
+	2013Q3-x86_64.summary
 
 DATA_FILES = $(DATA_SUMMARY:%.summary=$(DATA_DIR)/%.json)
 
@@ -48,7 +52,7 @@ clobber:
 install: all
 	[[ -n "$(DESTDIR)" ]]
 	mkdir -p $(DESTDIR)/out
-	cp ./pkg_server.js $(DESTDIR)/out
+	cp $(JSFILES) $(DESTDIR)/out
 	cp -r html data $(DESTDIR)/out
 	mkdir -p $(DESTDIR)/out/smf
 	sed 's|@@PREFIX@@|$(DESTDIR)/out|' < smf/pkg_server.xml.in > \

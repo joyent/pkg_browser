@@ -21,6 +21,7 @@
 		"restify":	"2.6.0",
 		"extsprintf":	"~1",
 		"less":		"~1",
-		"posix-getopt":	"~1"
+		"posix-getopt":	"~1",
+		"bunyan":	"~0.22"
 	}
 }
