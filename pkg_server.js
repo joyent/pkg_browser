@@ -30,8 +30,10 @@ var pkg_prefix = '';
 
 function load_sets()
 {
-	var i, key, data;
-	var files = mod_fs.readdirSync('./data');
+	var i, key, data, dirpath, files;
+
+	dirpath = mod_path.join(__dirname, 'data');
+	files = mod_fs.readdirSync(dirpath);
 	files = files.filter(function (x) {
 		if (mod_path.extname(x) === '.json')
 			return (x);
@@ -39,7 +41,7 @@ function load_sets()
 
 	for (i = 0; i < files.length; i++) {
 		key = mod_path.basename(files[i], '.json');
-		data = mod_fs.readFileSync('./data/' + files[i]).toString();
+		data = mod_fs.readFileSync(dirpath + '/' + files[i]).toString();
 		try {
 			pkg_sets[key] = JSON.parse(data);
 		} catch (ex) {
@@ -256,7 +258,7 @@ function main()
 
 	/* HTML */
 	staticfunc = mod_restify.serveStatic({
-	    directory: './html/'
+	    directory: mod_path.join(__dirname, 'html')
 	});
 
 	pkg_server.get(new RegExp('^' + pkg_prefix + '/set.*/'), serve_index);
