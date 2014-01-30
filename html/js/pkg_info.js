@@ -20,7 +20,7 @@ var pkginfo_collection = Backbone.Collection.extend({
 	this.options = options;
     },
 
-    url: function() {
+    url: function () {
 	return (pkg_prefix + 'api/set/' + this.options.pkgset + '/package/' +
 	    this.options.pkgname + '/' + this.options.pkgvers);
     }
@@ -46,7 +46,7 @@ var pkginfo_entry_view = Backbone.View.extend({
 		this.$el.append(top);
 		top.append($('<div>', { class: 'oneliner' }));
 		top.append($('<hr>', { class: 'divider' }));
-	
+
 		div = $('<div>',  { class: 'vers_con' });
 		div.append($('<span>', { class: 'vers_text' }));
 		div.append($('<div>', { class: 'text' }));
@@ -89,7 +89,7 @@ var pkginfo_entry_view = Backbone.View.extend({
 });
 
 var pkginfo_view = Backbone.View.extend({
-   initialize: function () {
+    initialize: function () {
 	_.bindAll(this);
 	this.listenTo(this.collection, 'reset', this.addAll);
     },
@@ -116,7 +116,8 @@ var pkginfo_view = Backbone.View.extend({
 		a = $('<a>', { text: 'home', href: pkg_prefix + 'index.html'});
 		a.on('click', function (event) {
 			event.preventDefault();
-			router.navigate(pkg_prefix + 'index.html', { trigger: true });
+			router.navigate(pkg_prefix + 'index.html',
+			    { trigger: true });
 		});
 		h1.append(a);
 		h1.append($('<span>', { text: ' / ' }));
@@ -145,7 +146,8 @@ var pkginfo_view = Backbone.View.extend({
 			h1.append($('<span>', { text: ' / ' }));
 
 		}
-		h1.append($('<span>', { text: this.collection.options.pkgname }));
+		h1.append($('<span>',
+		    { text: this.collection.options.pkgname }));
 
 		this.$el.append(intro);
 		this.$el.append($('<div>', { class: 'pkginfo' }));

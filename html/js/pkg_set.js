@@ -53,7 +53,7 @@ var pkgset_entry_view = Backbone.View.extend({
 	event.preventDefault();
 	router.navigate(this.model.get('url'), { trigger: true });
     }
-    
+
 });
 
 var pkgset_view = Backbone.View.extend({
@@ -71,7 +71,9 @@ var pkgset_view = Backbone.View.extend({
     },
 
     addOne: function (model) {
-	this.$('.pkgsets').append(new pkgset_entry_view({ model: model}).render());
+	this.$('.pkgsets').append(new pkgset_entry_view({
+		model: model
+	}).render());
     },
 
     render: function () {

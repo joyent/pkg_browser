@@ -4,6 +4,7 @@
 
 NODE = node
 MKSUMMARY = $(NODE) mksummary.js
+JSSTYLE = tools/jsstyle
 
 LESSC = node_modules/less/bin/lessc
 LESSDIR = less
@@ -11,9 +12,23 @@ LESSOUTDIR = html/css
 LESSOUT = $(LESSOUTDIR)/all.css
 LESSSOURCE = $(LESSDIR)/all.less
 
-JSFILES = \
+JS_NODE_FILES = \
 	pkg_server.js \
 	pkg_index.js
+JS_NODE_CHECK = $(JS_NODE_FILES:%.js=%.js.chk)
+
+JS_WEB_DIR = html/js
+JS_WEB_FILES = \
+	pkg_about.js \
+	pkg_catlist.js \
+	pkg_search.js \
+	index.js \
+	pkg_cat.js \
+	pkg_info.js \
+	pkg_set.js
+JS_WEB_CHECK = $(JS_WEB_FILES:%.js=$(JS_WEB_DIR)/%.js.chk)
+
+JS_CHECK_FILES += $(JS_NODE_CHECK) $(JS_WEB_CHECK)
 
 SUMMARY_BASE_URL = http://pkgsrc.joyent.com/packages/SmartOS/
 SUMMARY_TRAILER = "/All/pkg_summary.bz2"
@@ -48,13 +63,18 @@ $(LESSOUT): $(LESSSOURCE) $(LESSC)
 %.json: %.summary
 	$(MKSUMMARY) $< > $@
 
+%.js.chk: %.js
+	$(JSSTYLE) $<
+
 clobber:
 	rm -rf $(LESSOUT) $(DATA_DIR)
+
+check: $(JS_CHECK_FILES)
 
 install: all
 	[[ -n "$(DESTDIR)" ]]
 	mkdir -p $(DESTDIR)/out
-	cp $(JSFILES) $(DESTDIR)/out
+	cp $(NODEFILES) $(DESTDIR)/out
 	cp -r html data $(DESTDIR)/out
 	mkdir -p $(DESTDIR)/out/smf
 	sed 's|@@PREFIX@@|$(DESTDIR)/out|' < smf/pkg_server.xml.in > \

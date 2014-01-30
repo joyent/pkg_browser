@@ -67,8 +67,8 @@ var pkgsetdrop_view = Backbone.View.extend({
 	/* Do nothing if the user hasn't entered a term */
 	if (this.$('.pkgsearch_input').val() === '')
 		return;
-	targ = pkg_prefix + 'set/' + this.$('.pkgsearch_select').val() + '/search/' +
-	    this.$('.pkgsearch_input').val();
+	targ = pkg_prefix + 'set/' + this.$('.pkgsearch_select').val() +
+	    '/search/' + this.$('.pkgsearch_input').val();
 	router.navigate(targ, { trigger: true });
     },
 
@@ -100,7 +100,7 @@ var pkgsearch_collection = Backbone.Collection.extend({
 	this.options = options;
     },
 
-    url: function() {
+    url: function () {
 	return (pkg_prefix + 'api/set/' + this.options.pkgset + '/search/' +
 	    this.options.pkgsearch);
     },

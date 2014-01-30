@@ -21,7 +21,7 @@ var pkgcat_collection = Backbone.Collection.extend({
 	this.options = options;
     },
 
-    url: function() {
+    url: function () {
 	return (pkg_prefix + 'api/set/' + this.options.pkgset + '/category');
     },
 
@@ -56,7 +56,7 @@ var pkgcat_entry_view = Backbone.View.extend({
 	event.preventDefault();
 	router.navigate(this.model.get('url'), { trigger: true });
     }
- 
+
 });
 
 var pkgcat_view = Backbone.View.extend({
@@ -73,7 +73,9 @@ var pkgcat_view = Backbone.View.extend({
     },
 
     addOne: function (model) {
-	this.$('.pkgcats').append(new pkgcat_entry_view({ model: model}).render());
+	this.$('.pkgcats').append(new pkgcat_entry_view({
+		model: model
+	}).render());
     },
 
     render: function () {
@@ -87,7 +89,8 @@ var pkgcat_view = Backbone.View.extend({
 		a = $('<a>', { text: 'home', href: pkg_prefix + 'index.html'});
 		a.on('click', function (event) {
 			event.preventDefault();
-			router.navigate(pkg_prefix + 'index.html', { trigger: true });
+			router.navigate(pkg_prefix + 'index.html',
+			    { trigger: true });
 		});
 		h1.append(a);
 		h1.append($('<span>', { text: ' / ' }));

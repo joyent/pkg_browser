@@ -7,7 +7,7 @@ var pi_head = '<!DOCTYPE html>' +
 '	<meta charset="UTF-8" />' +
 '	<head>';
 
-var pi_headfini = '' + 
+var pi_headfini = '' +
 '		<title>pkgsrc browser</title>' +
 '	</head>' +
 '	<body>' +
@@ -19,28 +19,28 @@ var pi_headfini = '' +
 '		</div>';
 
 var pi_jshead = '' +
-'		<script src="/js/jquery-2.0.3.min.js" type="application/javascript">' +
-'		</script>' +
-'		<script src="/js/lodash.min.js" type="application/javascript">' +
-'		</script>' +
-'		<script src="/js/backbone-min.js" type="application/javascript">' +
-'		</script>';
+'	<script src="/js/jquery-2.0.3.min.js" type="application/javascript">' +
+'	</script>' +
+'	<script src="/js/lodash.min.js" type="application/javascript">' +
+'	</script>' +
+'	<script src="/js/backbone-min.js" type="application/javascript">' +
+'	</script>';
 
 var pi_jstrailer = '' +
-'		<script src="/js/pkg_set.js" type="application/javascript">' +
-'		</script>' +
-'		<script src="/js/pkg_cat.js" type="application/javascript">' +
-'		</script>' +
-'		<script src="/js/pkg_catlist.js" type="application/javascript">' +
-'		</script>' +
-'		<script src="/js/pkg_info.js" type="application/javascript">' +
-'		</script>' +
-'		<script src="/js/pkg_search.js" type="application/javascript">' +
-'		</script>' +
-'		<script src="/js/pkg_about.js" type="application/javascript">' +
-'		</script>' +
-'		<script src="/js/index.js" type="application/javascript">' +
-'		</script>';
+'	<script src="/js/pkg_set.js" type="application/javascript">' +
+'	</script>' +
+'	<script src="/js/pkg_cat.js" type="application/javascript">' +
+'	</script>' +
+'	<script src="/js/pkg_catlist.js" type="application/javascript">' +
+'	</script>' +
+'	<script src="/js/pkg_info.js" type="application/javascript">' +
+'	</script>' +
+'	<script src="/js/pkg_search.js" type="application/javascript">' +
+'	</script>' +
+'	<script src="/js/pkg_about.js" type="application/javascript">' +
+'	</script>' +
+'	<script src="/js/index.js" type="application/javascript">' +
+'	</script>';
 
 var pi_trailer = '' +
 '	</body>' +
@@ -48,7 +48,8 @@ var pi_trailer = '' +
 
 function pi_mkcss(prefix, loc)
 {
-	return ('<link href="' + prefix + loc + '" rel="stylesheet" type="text/css">');
+	return ('<link href="' + prefix + loc +
+	    '" rel="stylesheet" type="text/css">');
 }
 
 function pi_mkscript(prefix, loc)
@@ -60,7 +61,8 @@ function pi_mkscript(prefix, loc)
 function pi_mkindex(prefix)
 {
 	var out;
-	var script = '<script type="text/javascript">var pkg_prefix = \'' + prefix + '/\';</script>';
+	var script = '<script type="text/javascript">var pkg_prefix = \'' +
+	    prefix + '/\';</script>';
 
 	out = pi_head;
 	out += pi_mkcss(prefix, '/css/all.css');

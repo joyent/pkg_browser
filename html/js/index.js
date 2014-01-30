@@ -50,7 +50,7 @@ function createSetPage(set)
 	var catc, list;
 
 	switchView();
-	catc = new pkgcat_collection([], { pkgset: set });;
+	catc = new pkgcat_collection([], { pkgset: set });
 	list = new pkgcat_view({
 	    'collection': catc
 	});
@@ -98,7 +98,7 @@ function createSearchPage(set, arg)
 	search_col = new pkgsearch_collection([],
 	    { pkgset: set, pkgsearch: arg });
 	search = new pkgsearch_view({
-	    'collection': search_col 
+	    'collection': search_col
 	});
 	$('.content').append(search.render());
 	search_col.fetch({ reset: true });
@@ -157,7 +157,7 @@ function createTitle()
 
 	h1 = $('<h1>');
 	a = $('<a>', { text: 'smartos pkgsrc browser',
-	   href: pkg_prefix + 'index.html' });
+	    href: pkg_prefix + 'index.html' });
 	a.on('click', function (event) {
 		event.preventDefault();
 		router.navigate(pkg_prefix + 'index.html', { trigger: true });
@@ -173,7 +173,7 @@ function main()
 {
 	var search_collection;
 	var prefix = pkg_prefix.substring(1, pkg_prefix.length);
-       	var routes = {};
+	var routes = {};
 
 
 	routes[prefix + 'index.html'] = 'home';
@@ -183,7 +183,8 @@ function main()
 	routes[prefix + 'set/:set'] = 'set';
 	routes[prefix + 'set/:set/package/:package/:version'] = 'pkg';
 	routes[prefix + 'set/:set/category/:category'] = 'cat';
-	routes[prefix + 'set/:set/category/:category/package/:package/:version'] = 'info';
+	routes[prefix +
+	    'set/:set/category/:category/package/:package/:version'] = 'info';
 	routes[prefix + 'set/:set/search/:arg'] = 'search';
 
 
@@ -212,7 +213,8 @@ function main()
 
 	createTitle();
 	router = new pkg_router();
-	if (Backbone.history.start({ pushState: true, hashChange: false }) === false)
+	if (Backbone.history.start({ pushState: true, hashChange: false }) ===
+	    false)
 		router.navigate(pkg_prefix + 'index.html', { trigger: true });
 }
 

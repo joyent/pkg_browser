@@ -22,7 +22,7 @@ var pkgcatlist_collection = Backbone.Collection.extend({
 	this.options = options;
     },
 
-    url: function() {
+    url: function () {
 	return (pkg_prefix + 'api/set/' + this.options.pkgset + '/category/' +
 	    this.options.pkgcat);
     },
@@ -106,7 +106,8 @@ var pkgcatlist_view = Backbone.View.extend({
 		a = $('<a>', { text: 'home', href: pkg_prefix + 'index.html'});
 		a.on('click', function (event) {
 			event.preventDefault();
-			router.navigate(pkg_prefix + 'index.html', { trigger: true });
+			router.navigate(pkg_prefix + 'index.html',
+			    { trigger: true });
 		});
 		h1.append(a);
 		h1.append($('<span>', { text: ' / ' }));
