@@ -74,7 +74,7 @@ check: $(JS_CHECK_FILES)
 install: all
 	[[ -n "$(DESTDIR)" ]]
 	mkdir -p $(DESTDIR)/out
-	cp $(NODEFILES) $(DESTDIR)/out
+	cp $(JS_NODE_FILES) $(DESTDIR)/out
 	cp -r html data $(DESTDIR)/out
 	mkdir -p $(DESTDIR)/out/smf
 	sed 's|@@PREFIX@@|$(DESTDIR)/out|' < smf/pkg_server.xml.in > \
