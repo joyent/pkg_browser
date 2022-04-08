@@ -34,16 +34,11 @@ SUMMARY_BASE_URL = http://pkgsrc.joyent.com/packages/SmartOS/
 SUMMARY_TRAILER = "/All/pkg_summary.bz2"
 
 DATA_DIR = data
-DATA_SUMMARY = 2013Q2-i386.summary \
-	2013Q2-multiarch.summary \
-	2013Q2-sngl.summary \
-	2013Q2-x86_64.summary \
-	2013Q3-i386.summary \
-	2013Q3-multiarch.summary \
-	2013Q3-sngl.summary \
-	2013Q3-x86_64.summary \
-	2013Q4-i386.summary \
-	2013Q4-x86_64.summary
+DATA_SUMMARY = \
+	2018Q4-x86_64.summary \
+	2019Q4-x86_64.summary \
+	2020Q4-x86_64.summary \
+	2021Q4-x86_64.summary
 
 DATA_FILES = $(DATA_SUMMARY:%.summary=$(DATA_DIR)/%.json)
 

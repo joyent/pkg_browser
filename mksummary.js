@@ -32,6 +32,11 @@ function fatal(msg)
 	process.exit(1);
 }
 
+function warn(msg)
+{
+	console.error(msg);
+}
+
 function parse_version(val)
 {
 	return ({ 'pkg': val.toString() });
@@ -67,7 +72,7 @@ function input(line)
 			curobj['desc'] = val;
 	} else if (key === 'CATEGORIES') {
 		if (val === '')
-			fatal('malformed metadata, no category: ' +
+			warn('malformed metadata, no category: ' +
 			    JSON.stringify(curobj));
 		curobj['cats'] = val.split(' ');
 	} else if (key === 'DEPENDS') {
