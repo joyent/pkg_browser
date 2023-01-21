@@ -71,9 +71,11 @@ function input(line)
 		else
 			curobj['desc'] = val;
 	} else if (key === 'CATEGORIES') {
-		if (val === '')
+		if (val === '') {
 			warn('malformed metadata, no category: ' +
-			    JSON.stringify(curobj));
+				JSON.stringify(curobj));
+			val = 'none';
+		}
 		curobj['cats'] = val.split(' ');
 	} else if (key === 'DEPENDS') {
 		if ('deps' in curobj)
