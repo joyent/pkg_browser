@@ -26,7 +26,7 @@ var pkg_set_list = [];		/* List of top level elements in the array */
 var pkg_server;			/* Restify server */
 var pkg_ip = '0.0.0.0';
 var pkg_port = '80';
-var pkg_prefix = '';
+var pkg_prefix = '/packages';
 
 function load_sets()
 {
