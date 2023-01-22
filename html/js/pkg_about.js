@@ -99,10 +99,10 @@ function mkheader(header)
 var aboutstart_text = '<p>pkgsrc is a general package management system that originated from NetBSD. pkgsrc is similar to other systems for binary packages like Debian and Red Hat\'s repositories.</p>';
 
 /* JSSTYLED */
-aboutstart_text += '<p>pkgsrc branches and freezes every quarter. We build these packages in four different flavors:</p>';
+// aboutstart_text += '<p>pkgsrc branches and freezes every quarter. We build these packages in four different flavors:</p>';
 
 /* JSSTYLED */
-aboutstart_text += '<ul><li>i386 - 32 bit packages</li><li>amd64 - 64 bit packages</li><li>multiarch - provides both 32 and 64 bit libraries and binaries</li><li>sngl - provides multiarch packages for the Joyent sngl images</li></ul>';
+// aboutstart_text += '<ul><li>i386 - 32 bit packages</li><li>amd64 - 64 bit packages</li><li>multiarch - provides both 32 and 64 bit libraries and binaries</li><li>sngl - provides multiarch packages for the Joyent sngl images</li></ul>';
 
 /* JSSTYLED */
 aboutstart_text += '<p>Inside of a SmartOS image, the primary tool to manipulate packages is pkgin. To get a list of everything that you can do with pkgin you can just run \'pkgin\'.</p>';
@@ -179,7 +179,7 @@ var pkgabout_build_view = Backbone.View.extend({
 });
 
 /* JSSTYLED */
-var aboutpage_text = '<p>This site is powered by pkg_browser and hosting provided by <a href="http://joyent.com">Joyent</a>. The source code is available on github at <a href="http://github.com/rmustacc/pkg_browser">http://github.com/rmustacc/pkg_browser</a>. If you encounter any issues or have any suggestions, please let us know on the github project\'s <a href="http://github.com/rmustacc/pkg_browser/issues">issue tracker</a>.</p><p>Thanks to <a href="http://aldaviva.com">Ben Hutchison</a> for providing the design, as well as, countless help and consultation in putting this together.</p>';
+var aboutpage_text = '<p>This site is powered by pkg_browser and hosting provided by <a href="https://mnx.io">MNX</a>. The source code is available on github at <a href="http://github.com/TritonDataCenter/pkg_browser">http://github.com/TritonDataCenter/pkg_browser</a>. If you encounter any issues or have any suggestions, please let us know on the github project\'s <a href="http://github.com/TritonDataCenter/pkg_browser/issues">issue tracker</a>.</p><p>Thanks to <a href="http://aldaviva.com">Ben Hutchison</a> for providing the design, as well as, countless help and consultation in putting this together.</p>';
 
 var pkgabout_about_view = Backbone.View.extend({
     className: 'pkgabout_about',
