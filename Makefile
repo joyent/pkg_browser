@@ -35,10 +35,10 @@ SUMMARY_TRAILER = "/All/pkg_summary.bz2"
 
 DATA_DIR = data
 DATA_SUMMARY = \
-	2019Q4-x86_64.summary \
 	2020Q4-x86_64.summary \
 	2021Q4-x86_64.summary \
 	2022Q4-x86_64.summary \
+	2023Q4-x86_64.summary \
 	trunk-x86_64.summary \
 	trunk-tools.summary
 
