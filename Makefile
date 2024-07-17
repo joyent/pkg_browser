@@ -30,7 +30,7 @@ JS_WEB_CHECK = $(JS_WEB_FILES:%.js=$(JS_WEB_DIR)/%.js.chk)
 
 JS_CHECK_FILES += $(JS_NODE_CHECK) $(JS_WEB_CHECK)
 
-SUMMARY_BASE_URL = http://pkgsrc.joyent.com/packages/SmartOS/
+SUMMARY_BASE_URL = http://pkgsrc.smartos.org/packages/SmartOS/
 SUMMARY_TRAILER = "/All/pkg_summary.bz2"
 
 DATA_DIR = data
