@@ -39,6 +39,7 @@ DATA_SUMMARY = \
 	2021Q4-x86_64.summary \
 	2022Q4-x86_64.summary \
 	2023Q4-x86_64.summary \
+	2024Q4-x86_64.summary \
 	trunk-x86_64.summary \
 	trunk-tools.summary
 
